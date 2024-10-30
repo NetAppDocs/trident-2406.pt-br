@@ -1,0 +1,23 @@
+---
+sidebar: sidebar 
+permalink: sample-article.html 
+keywords:  
+summary:  
+---
+= O título da página vai aqui
+:allow-uri-read: 
+:icons: font
+:imagesdir: ./media/
+
+
+[role="lead"]
+Use este modelo para artigos, tópicos, o que você chamá-los. O arquivo index.adoc não tem as palavras-chave corretas para uma página de artigo e usá-lo como modelo pode causar problemas de publicação mais tarde.
+
+
+NOTE: Exclua esse arquivo antes da publicação inicial, pois o arquivo será publicado mesmo que não esteja vinculado à barra lateral. Depois de criar alguns artigos, você pode usá-los como um starter.
+
+Se seus artigos estiverem em uma subpasta de conteúdo, você precisará fazer dois ajustes na notação mostrada acima:
+
+* `:imagesdir:../media/`
+* `permalink: folder-name/sample-article.html`
+
