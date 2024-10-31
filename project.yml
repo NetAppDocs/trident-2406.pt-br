@@ -7,6 +7,7 @@ settings:
     pdf_enabled: true
     harmony_enabled: false
   rss_page: trident-rn.html
+  downlevel: true
   versions:
   - version-number: '24.06'
     url: "/trident-2406"
@@ -30,7 +31,7 @@ settings:
     url: "/trident-2204"
   - version-number: '22.01'
     url: "/trident-2201"
-  langs: pt-br,us-en,ja-jp,ko-kr,zh-cn,zh-tw,de-de,es-es,fr-fr,it-it
+  langs: pt-br,us-en,de-de,es-es,fr-fr,it-it,ja-jp,ko-kr,zh-cn,zh-tw
 sidebar:
   entries:
   - title: Documentos do Astra Trident
