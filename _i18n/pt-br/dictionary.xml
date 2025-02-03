@@ -4259,4 +4259,260 @@
   <block id="4f9bffbf1ddd667b6d18ee5fe3bc3389" category="paragraph"><block ref="3428bfd6b9aff85ad104616c57d9e301" prefix="" category="inline-code"></block><block ref="21c6b99e1b958da23b23c0373944c626" prefix=" " category="inline-code"></block> (com uma versão dedicada)</block>
   <block id="d7cbf82bbbafb530fdf4ff891b9d305d" category="list-text">Atualize o complemento para a versão retornada em ATUALIZAÇÃO DISPONÍVEL na saída da etapa anterior.<block ref="7517f28d87e3e3f5f51c7054bcfb6847" prefix=" " category="inline-code"></block></block>
   <block id="844c1d7ef01df888c2eaad6c7c2913c1" category="paragraph"><block ref="1e4bc555b90c0333c8626cc7405bd1f8" prefix="" category="inline-code"></block></block>
+  <block id="67fc69d0bf35fe0124a1937122bf3aec" category="summary">Você pode configurar a criptografia para proteger o tráfego entre o Astra Control e o back-end de storage.</block>
+  <block id="4d7f45f93965eed03fcd71fbeed6d2a8" category="doc">Configurar a criptografia Kerberos em voo</block>
+  <block id="876580b79932af82226561f24b11688f" category="paragraph">Com o Astra Control Provisioner, você pode melhorar a segurança de acesso aos dados habilitando a criptografia para o tráfego entre o cluster gerenciado e o back-end de storage.</block>
+  <block id="05deabe68807f95ec441eca5245eaab0" category="paragraph">O Astra Control Provisioner oferece suporte à criptografia Kerberos em mais de NFSv3 e NFSv4 conexões de clusters do Red Hat OpenShift e upstream do Kubernetes para volumes ONTAP locais.</block>
+  <block id="0a710c309a5f6dc65b056833a5208521" category="paragraph">Você pode criar, excluir, redimensionar, snapshot, clone, clone somente leitura e importar volumes que usam criptografia NFS.</block>
+  <block id="0b660ae85d215a9e70834a4e745fe95b" category="section-title">Configurar a criptografia Kerberos em trânsito com volumes ONTAP locais</block>
+  <block id="7c139dfc85d7e4497d2109fff4d0893f" category="paragraph">Você pode ativar a criptografia Kerberos no tráfego de armazenamento entre o cluster gerenciado e um back-end de armazenamento ONTAP local.</block>
+  <block id="4733fee3df7d4e6e25e68e5ad7d2adf0" category="admonition">A criptografia Kerberos para tráfego NFS com backends de armazenamento ONTAP no local é suportada apenas usando o<block ref="8321592ce24c8a122ecf26a63cfca407" prefix=" " category="inline-code"></block> driver de armazenamento.</block>
+  <block id="6e2b60d9ef0eed2895dd36450104f761" category="inline-link-macro">Ativou o Astra Control Provisioner</block>
+  <block id="8758464d392ac54bf4ac49ade2ca62e2" category="list-text">Certifique-se de que você está <block ref="1c2b748ae79d0dfb94bb1d936ef06f9a" category="inline-link-macro-rx"></block>no cluster gerenciado.</block>
+  <block id="0ff02d27ae5cac1a12c6c403fd55443c" category="list-text">Certifique-se de que tem acesso ao<block ref="c67fd1b99934afa248dfeb285a9a4191" prefix=" " category="inline-code"></block> utilitário.</block>
+  <block id="bef890ed7cc869346d4b483cd3e3ab00" category="list-text">Verifique se você tem acesso de administrador ao back-end de storage do ONTAP.</block>
+  <block id="160b05c1b85ce34d702a3568614baec1" category="list-text">Certifique-se de saber o nome do volume ou volumes que você compartilhará no back-end de storage do ONTAP.</block>
+  <block id="1a69d38f7b46901c58e85d024e87b034" category="inline-link">Ative o Kerberos em um LIF de dados</block>
+  <block id="d4a594e9e05807f063e76ba8e5520ce8" category="list-text">Certifique-se de que você preparou a VM de armazenamento ONTAP para oferecer suporte à criptografia Kerberos para volumes NFS. <block ref="6585cfb6b510f588abb97add305c4508" category="inline-link-rx"></block>Consulte para obter instruções.</block>
+  <block id="9fe985de654739fa6f48edb0d49059b4" category="inline-link">Guia de práticas recomendadas e aprimoramentos do NetApp NFSv4</block>
+  <block id="9c6a0d551d50340cca48e6cfa4355566" category="list-text">Certifique-se de que todos os volumes NFSv4 usados com criptografia Kerberos estejam configurados corretamente. Consulte a seção Configuração de domínio do NetApp NFSv4 (página 13) do<block ref="fcbfe3012009d21ef9ba8407142f85b6" category="inline-link-rx"></block>.</block>
+  <block id="7c67bfc9153da2055f6d09209f9853c7" category="section-title">Adicionar ou modificar políticas de exportação do ONTAP</block>
+  <block id="3afa4a2a4546fcf1b9a361d1bff9763b" category="paragraph">Você precisa adicionar regras às políticas de exportação existentes do ONTAP ou criar novas políticas de exportação que suportem a criptografia Kerberos para o volume raiz da VM de armazenamento do ONTAP, bem como quaisquer volumes do ONTAP compartilhados com o cluster do Kubernetes upstream. As regras de política de exportação que você adicionar ou as novas políticas de exportação que você criar precisam oferecer suporte aos seguintes protocolos de acesso e permissões de acesso:</block>
+  <block id="e21233a7f0d7fedb5883aea1dfed27cf" category="paragraph-title">Protocolos de acesso</block>
+  <block id="e10f51f4d0eb1b58929237c03db4b832" category="paragraph">Configurar a política de exportação com protocolos de acesso NFS, NFSv3 e NFSv4.</block>
+  <block id="baedff73fdfff23f65e8b80727cd3088" category="paragraph-title">Aceder aos detalhes</block>
+  <block id="892969be437eb53b05f372cc0ae74d6c" category="paragraph">Você pode configurar uma das três versões diferentes da criptografia Kerberos, dependendo de suas necessidades para o volume:</block>
+  <block id="fda32d078836aa6e69a3497be5f9cdca" category="list-text">*Kerberos 5* - (autenticação e criptografia)</block>
+  <block id="7d55fc39e32469f330297f866ec40e41" category="list-text">*Kerberos 5i* - (autenticação e criptografia com proteção de identidade)</block>
+  <block id="ec7a355c2dad88f01ddce6c662ff507f" category="list-text">*Kerberos 5P* - (autenticação e criptografia com proteção de identidade e privacidade)</block>
+  <block id="43c969c43b32e3dd3bcf607fcbe4eb43" category="paragraph">Configure a regra de política de exportação do ONTAP com as permissões de acesso apropriadas. Por exemplo, se os clusters estiverem montando os volumes NFS com uma mistura de criptografia Kerberos 5i e kerberos 5P, use as seguintes configurações de acesso:</block>
+  <block id="0370275db54735bcb50d5bfce36de4e6" category="cell">Acesso somente leitura</block>
+  <block id="dbdb2754b99a3cb725e62ef04c72ee06" category="cell">Acesso de leitura/escrita</block>
+  <block id="a3a9521b6675631e988004e7b8ffe7b4" category="cell">Acesso ao superusuário</block>
+  <block id="15395d0642f86c5992abbca5e56e2b29" category="cell">UNIX</block>
+  <block id="00d23a76e43b46dae9ec7aa9dcbebb32" category="cell">Ativado</block>
+  <block id="f22873ba6efee4accc10bd5a3d3ca9eb" category="cell">Kerberos 5i</block>
+  <block id="a98fd9001be872cb9763c171625ee881" category="cell">Kerberos 5P</block>
+  <block id="9a83b6e7170a551799b737b273fde5e1" category="paragraph">Consulte a documentação a seguir para saber como criar políticas de exportação e regras de política de exportação do ONTAP:</block>
+  <block id="bb53c6c29f127a298da7dd86bf00bb89" category="inline-link">Crie uma política de exportação</block>
+  <block id="2065c7b470f4d228b592158785fc8c0b" category="list-text"><block ref="2065c7b470f4d228b592158785fc8c0b" category="inline-link-rx"></block></block>
+  <block id="8c47b652d31bca921bb367b0e3c5ec6d" category="inline-link">Adicione uma regra a uma política de exportação</block>
+  <block id="249db3ace916cc1363d388978a8b6c5e" category="list-text"><block ref="249db3ace916cc1363d388978a8b6c5e" category="inline-link-rx"></block></block>
+  <block id="c21c2b66c343dfe9db6298e59c2cc767" category="section-title">Crie um back-end de storage</block>
+  <block id="d4d4d663b462e9ebf9fa142e6c6a52d3" category="paragraph">Você pode criar uma configuração de back-end de storage do Astra Control Provisioner que inclua o recurso de criptografia Kerberos.</block>
+  <block id="0848c0a5d21711a3f8967a344553c492" category="paragraph">Quando você cria um arquivo de configuração de back-end de armazenamento que configura a criptografia Kerberos, você pode especificar uma das três versões diferentes da criptografia Kerberos usando o<block ref="21f59c061af833af5de20556ce76052d" prefix=" " category="inline-code"></block> parâmetro:</block>
+  <block id="619885da64e4ba4b0df04a00d78079b7" category="list-text"><block ref="47587c842cb0a2574a5a4c7c644b006d" prefix="" category="inline-code"></block> (autenticação e criptografia)</block>
+  <block id="aa734ef649b1255faccfc198980bf49a" category="list-text"><block ref="600550ee922e257041b75142ddab2319" prefix="" category="inline-code"></block> (autenticação e criptografia com proteção de identidade)</block>
+  <block id="4197df0e0ac8f9480069ee1e0dc22543" category="list-text"><block ref="b148e7f5a01830ae530070588af5e9e6" prefix="" category="inline-code"></block> (autenticação e criptografia com proteção de identidade e privacidade)</block>
+  <block id="c99e9f5ade1b20705438ad6882d112c2" category="paragraph">Especifique apenas um nível Kerberos. Se você especificar mais de um nível de criptografia Kerberos na lista de parâmetros, somente a primeira opção será usada.</block>
+  <block id="926a7d5402fb3ed0da8fcd630e3a8f8c" category="list-text">No cluster gerenciado, crie um arquivo de configuração de back-end de storage usando o exemplo a seguir. Substitua os valores entre parêntesis&gt; por informações do seu ambiente:</block>
+  <block id="2cd636101227e18554e5c5351bf5bbe3" category="list-text">Use o arquivo de configuração que você criou na etapa anterior para criar o backend:</block>
+  <block id="3204b0a88f0c8e6cb89ef2653173ddf1" category="paragraph">Você pode criar uma classe de armazenamento para provisionar volumes com criptografia Kerberos.</block>
+  <block id="03111bbdda72125f143e084557265c1c" category="paragraph">Ao criar um objeto de classe de armazenamento, você pode especificar uma das três versões diferentes da criptografia Kerberos usando o<block ref="e1d3d66c5926aa7fbc3186da8f9b476b" prefix=" " category="inline-code"></block> parâmetro:</block>
+  <block id="85eee746a5d30d5149d419a3dfd2fe4e" category="list-text"><block ref="ebd2fabd7ee9d78e670334fba38c5a6b" prefix="" category="inline-code"></block> (autenticação e criptografia)</block>
+  <block id="24dac19871e9929a42267b538a60ebe5" category="list-text"><block ref="82f5845550ca9ab77ce797c16bd7bca1" prefix="" category="inline-code"></block> (autenticação e criptografia com proteção de identidade)</block>
+  <block id="c36d9d41da2e174bfa8b3338450fb45c" category="list-text"><block ref="7a1dedb8f6c22fd4833b45267ad3b01a" prefix="" category="inline-code"></block> (autenticação e criptografia com proteção de identidade e privacidade)</block>
+  <block id="4a2e7c9ecf75ac18d4daec2783256280" category="paragraph">Especifique apenas um nível Kerberos. Se você especificar mais de um nível de criptografia Kerberos na lista de parâmetros, somente a primeira opção será usada. Se o nível de criptografia especificado na configuração de back-end de armazenamento for diferente do nível especificado no objeto de classe de armazenamento, o objeto de classe de armazenamento terá precedência.</block>
+  <block id="0bae6577bb0c45b6f2d82896713df9f9" category="list-text">Crie um objeto Kubernetes StorageClass, usando o exemplo a seguir:</block>
+  <block id="bd9c5e9bd5f130a6fbdbcaeb04656652" category="list-text">Crie a classe de armazenamento:</block>
+  <block id="2472867b1c2b8a486fe64cfc08afeba5" category="list-text">Certifique-se de que a classe de armazenamento foi criada:</block>
+  <block id="d0848afd8553c34945705222a97a4553" category="paragraph">Você deve ver saída semelhante ao seguinte:</block>
+  <block id="0a44f30bac4e15e0464a80627bef5882" category="section-title">Volumes de provisionamento</block>
+  <block id="df5d2586ae35677e5d1b74f6bf22fc4a" category="inline-link">provisionamento de um volume</block>
+  <block id="d54dd0bd4d4709e0b61979c77050c4f3" category="paragraph">Depois de criar um back-end de storage e uma classe de storage, agora é possível provisionar um volume. Consulte estas instruções para<block ref="45693932e20b39f3b16747f62135000b" category="inline-link-rx"></block>.</block>
+  <block id="fe10ad21eb1ce607c403a8d609d5ab3e" category="section-title">Configurar a criptografia Kerberos em trânsito com volumes Azure NetApp Files</block>
+  <block id="cd21e25bc313d3805456542eac624499" category="paragraph">Você pode ativar a criptografia Kerberos no tráfego de armazenamento entre o cluster gerenciado e um único back-end de armazenamento Azure NetApp Files ou um pool virtual de backends de armazenamento Azure NetApp Files.</block>
+  <block id="bf08e3747af8cdb14b7eaf98563b8d7e" category="inline-link-macro">Habilite o Astra Control Provisioner</block>
+  <block id="6f6708d43f002178ebd42b453faca11e" category="list-text">Certifique-se de que você ativou o Astra Control Provisioner no cluster gerenciado do Red Hat OpenShift. <block ref="09bb7a105629f922c89dc5bfe800e3ad" category="inline-link-macro-rx"></block>Consulte para obter instruções.</block>
+  <block id="6c32a3d0f1a665987b98dde5a0f96d7d" category="inline-link">Documentação do Azure NetApp Files</block>
+  <block id="aa63a31f222305a4ce10d8c1020ab1fd" category="list-text">Certifique-se de que preparou o back-end de armazenamento Azure NetApp Files para criptografia Kerberos, observando os requisitos e seguindo as instruções em<block ref="54b351b1767d2d50eb8c87e19c20164c" category="inline-link-rx"></block>.</block>
+  <block id="4f07c8d51fef64025d4b746305177733" category="paragraph">Você pode criar uma configuração de back-end de armazenamento Azure NetApp Files que inclua o recurso de criptografia Kerberos.</block>
+  <block id="5c6eaa8dd4c4134f6ad836e97ffdee13" category="paragraph">Quando você cria um arquivo de configuração de back-end de armazenamento que configura a criptografia Kerberos, você pode defini-lo para que ele seja aplicado em um dos dois níveis possíveis:</block>
+  <block id="bc0557be41ea94e344d7ece1f311b7d4" category="list-text">O *nível de back-end de armazenamento* usando o<block ref="6a60a6d9955ef9fce24cf4e86efed7af" prefix=" " category="inline-code"></block> campo</block>
+  <block id="e30ee9a2b9976217a5fe28b412fe04d6" category="list-text">O *nível de pool virtual* usando o<block ref="533988f6253fcffab6270c1aafb50970" prefix=" " category="inline-code"></block> campo</block>
+  <block id="64864cec765a0e5c421369098904873c" category="paragraph">Quando você define a configuração no nível do pool virtual, o pool é selecionado usando o rótulo na classe de armazenamento.</block>
+  <block id="082ccae8192fda90d271d92200b3a7dd" category="paragraph">Em ambos os níveis, você pode especificar uma das três versões diferentes da criptografia Kerberos:</block>
+  <block id="853434fc4aabccb1e3341f56ef2a9424" category="list-text"><block ref="9ce0da43b8420d1a89f0d00da04312a2" prefix="" category="inline-code"></block> (autenticação e criptografia)</block>
+  <block id="44ea74e03aa9994870273996b8770ef6" category="list-text"><block ref="6bbaa5deea5e26abf8837d31bd265b6f" prefix="" category="inline-code"></block> (autenticação e criptografia com proteção de identidade)</block>
+  <block id="e22427c81cd5155061fad66ed3f13f52" category="list-text"><block ref="42b55bed7d0514cd2e2189a3edc9d87b" prefix="" category="inline-code"></block> (autenticação e criptografia com proteção de identidade e privacidade)</block>
+  <block id="c51fc706f0eb21d747d3ff2e2bb6c38b" category="list-text">No cluster gerenciado, crie um arquivo de configuração de back-end de storage usando um dos exemplos a seguir, dependendo de onde você precisa definir o back-end de storage (nível de back-end de armazenamento ou nível de pool virtual). Substitua os valores entre parêntesis&gt; por informações do seu ambiente:</block>
+  <block id="d51a5db438981d465f8fecc7ecbeb054" category="open-title">Exemplo de nível de back-end de storage</block>
+  <block id="83aab9b6ffc8c65b79350e009c49e5f4" category="open-title">Exemplo de nível de pool virtual</block>
+  <block id="5220375a520b7758aa31b8b43ce717fe" category="summary">O Astra Control Provisioner é compatível com a criação de relacionamentos espelhados entre volumes de origem e destino para replicar volumes para recuperação de desastres.</block>
+  <block id="50e2eea9ba53d70147772db1c5d25f79" category="doc">Replique volumes usando o SnapMirror</block>
+  <block id="d0182feabbbe0987e5c6aed407b4c2a7" category="paragraph">Com o Astra Control Provisioner, você pode criar relacionamentos de espelhamento entre um volume de origem em um cluster e o volume de destino no cluster peered para replicação de dados para recuperação de desastres. Você pode usar uma Definição de recursos personalizados (CRD) para executar as seguintes operações:</block>
+  <block id="a682d8ef86abcae6c5a1db6186c5f02b" category="list-text">Criar relações de espelhamento entre volumes (PVCs)</block>
+  <block id="31a8f98d3378661a5b8abf15438f0bca" category="list-text">Remova as relações de espelho entre volumes</block>
+  <block id="a6349012892be516e5729d501a9649a7" category="list-text">Quebre as relações do espelho</block>
+  <block id="2597cb6d27f572bb6d7d2fd15f414795" category="list-text">Promover o volume secundário durante as condições de desastre (failovers)</block>
+  <block id="40f7c55be912a395aed2502927d3fcfa" category="list-text">Realizar a transição sem perda de aplicativos do cluster para o cluster (durante failovers planejados ou migrações)</block>
+  <block id="d193cd9a2432eca22e5cf0d06dcee1e6" category="section-title">Pré-requisitos de replicação</block>
+  <block id="55be807bf2be012ff44a04449cc5e8a8" category="paragraph">Certifique-se de que os seguintes pré-requisitos sejam atendidos antes de começar:</block>
+  <block id="3404cce75db90acf6a9d52860721a139" category="list-title">Clusters de ONTAP</block>
+  <block id="5764ffcba90184d76761806e7e8395b9" category="list-text">*Provisioner*: O Astra Control Provisioner versão 23,10 ou posterior deve existir nos clusters do Kubernetes de origem e destino que utilizam o ONTAP como um back-end.</block>
+  <block id="ba84728ffba482ceb12371a53be2f636" category="inline-link">Visão geral do licenciamento do SnapMirror no ONTAP</block>
+  <block id="b677eb65f7f869d18b845725a133a8d5" category="list-text">*Licenças*: As licenças assíncronas do ONTAP SnapMirror usando o pacote proteção de dados devem estar ativadas nos clusters ONTAP de origem e destino. <block ref="a7b9425cefc4a3715b38951f4b2b6b35" category="inline-link-rx"></block>Consulte para obter mais informações.</block>
+  <block id="5cc8ada79224d850ecd22fd22e550c47" category="list-title">Peering</block>
+  <block id="9fecd08b776fdfca7b33426363edf913" category="inline-link">Visão geral do peering de cluster e SVM</block>
+  <block id="02b05cdd8f0a8c426f307085cc1004f7" category="list-text">*Cluster e SVM*: Os backends de storage do ONTAP devem ser colocados em Contato. <block ref="60333a598df416e49fbceb5a88dce370" category="inline-link-rx"></block>Consulte para obter mais informações.</block>
+  <block id="94ac6b3955eab183cb88ab17c91000eb" category="admonition">Certifique-se de que os nomes do SVM usados na relação de replicação entre dois clusters ONTAP sejam exclusivos.</block>
+  <block id="11b4eae81775a6d26d41d2ca42309c91" category="list-text">*Astra Control Provisioner e SVM*: Os SVMs remotas com peering devem estar disponíveis para o Astra Control Provisioner no cluster de destino.</block>
+  <block id="0c5e1b5bc54261ccadd2a72af1047ded" category="list-title">Drivers suportados</block>
+  <block id="57601c13c06c6ac6e23efaab44ced427" category="list-text">A replicação de volume é compatível com os drivers ONTAP-nas e ONTAP-san.</block>
+  <block id="3ce5b83f8896ef0d2e356d3972ec8898" category="section-title">Crie um PVC espelhado</block>
+  <block id="427a1ab7f39ee4f2dd7a0b7e35f572da" category="paragraph">Siga estas etapas e use os exemplos CRD para criar relação de espelhamento entre volumes primário e secundário.</block>
+  <block id="4dc69f665f0d76c17a577a352dd15b25" category="list-text">Execute as etapas a seguir no cluster primário do Kubernetes:</block>
+  <block id="cffc5263be00a76539edeeff72190d54" category="list-text">Crie um objeto StorageClass com o<block ref="23041ca302bab724a5a0a4ee923c745d" prefix=" " category="inline-code"></block> parâmetro.</block>
+  <block id="f1fe26832c26eb686c85bd72da8a62f1" category="list-text">Crie um PVC com StorageClass criado anteriormente.</block>
+  <block id="a306778c7affcc4dd2329c7f1e9a6389" category="list-text">Crie um MirrorRelationship CR com informações locais.</block>
+  <block id="f55994c0c11fac6e31cbb70581f696f0" category="paragraph">O Astra Control Provisioner obtém as informações internas do volume e do estado atual de proteção de dados (DP) do volume e, em seguida, preenche o campo de status do MirrorRelationship.</block>
+  <block id="7e36329a511f28054ceb0cb2aba7de3a" category="list-text">Obtenha o tridentMirrorRelacionship CR para obter o nome interno e SVM do PVC.</block>
+  <block id="ce01c03f932076e82348fc5aaefacc7d" category="list-text">Execute as etapas a seguir no cluster secundário do Kubernetes:</block>
+  <block id="dbe7fac150e57be9bc0d8e046792f4c3" category="list-text">Crie um StorageClass com o parâmetro Trident.NetApp.io/replicação: True.</block>
+  <block id="01d68e0f9630c032dc8a33358e46e65b" category="list-text">Crie um MirrorRelationship CR com informações de destino e origem.</block>
+  <block id="960441627a9e57f3614bc5e5fce9a5ff" category="paragraph">O Provisioner criará um relacionamento SnapMirror com o nome da política de relacionamento configurado (ou padrão para ONTAP) e inicializará-o.</block>
+  <block id="4ba5d2a91c95149a7ad924ebd0d9503d" category="list-text">Crie um PVC com StorageClass criado anteriormente para atuar como secundário (destino SnapMirror).</block>
+  <block id="efe874c809f0fe07e9ccbe31c010017a" category="paragraph">O Astra Control Provisioner verificará o CRD de relacionamento do tridentMirrorRelacionship e falhará em criar o volume se o relacionamento não existir. Se o relacionamento existir, o Supervisor de Controle Astra garantirá que o novo FlexVol volume seja colocado em um SVM que seja emparelhado com o SVM remoto definido no espelhamento.</block>
+  <block id="e71d1a5cbaac30e63ed507e4b62c705f" category="section-title">Estados de replicação de volume</block>
+  <block id="35a5ab9faaa73d6bfb24393f7b676624" category="paragraph">Um relacionamento de espelhamento do Trident (TMR) é um CRD que representa um fim de uma relação de replicação entre PVCs. O TMR de destino tem um estado, que diz ao Astra Control Provisioner qual é o estado desejado. O TMR de destino tem os seguintes estados:</block>
+  <block id="546afd3b22376f948ae8d790e441d7da" category="list-text">* Estabelecido*: O PVC local é o volume de destino de uma relação de espelho, e esta é uma nova relação.</block>
+  <block id="724cfb5ec8bac42a80699bb79c4eccb9" category="list-text">*Promovido*: O PVC local é ReadWrite e montável, sem relação de espelho atualmente em vigor.</block>
+  <block id="d323366aa32e60d08a0f93bda543af47" category="list-text">* Restabelecido*: O PVC local é o volume de destino de uma relação de espelho e também estava anteriormente nessa relação de espelho.</block>
+  <block id="4c3cd5b62a43e82e03fffa6b238ed918" category="list-text">O estado restabelecido deve ser usado se o volume de destino estiver em uma relação com o volume de origem, porque ele sobrescreve o conteúdo do volume de destino.</block>
+  <block id="b2e7dc07859cd924ca5706b299986e57" category="list-text">O estado restabelecido falhará se o volume não estiver previamente em uma relação com a fonte.</block>
+  <block id="93f9c6ccc7d85e709509db31891ae5eb" category="section-title">Promover PVC secundário durante um failover não planejado</block>
+  <block id="4a76c8d930ec18b5aedc26b5d8e5246f" category="paragraph">Execute a seguinte etapa no cluster secundário do Kubernetes:</block>
+  <block id="78ac02218b5a9367bdcb4881538477cc" category="list-text">Atualize o campo _spec.State_ do TrigentMirrorRelationship para<block ref="1fe57d6202c7cfbb0ee344b1e0a6fb37" prefix=" " category="inline-code"></block>.</block>
+  <block id="ffe4cfc202d643b50342b93a4a11a82f" category="section-title">Promover PVC secundário durante um failover planejado</block>
+  <block id="1d60b89a076d7f30b8efdef50e842f68" category="paragraph">Durante um failover planejado (migração), execute as seguintes etapas para promover o PVC secundário:</block>
+  <block id="3310d9a60c164accb7c262ab6e9fbc65" category="list-text">No cluster primário do Kubernetes, crie um snapshot do PVC e aguarde até que o snapshot seja criado.</block>
+  <block id="8b17b79902950942165541a8ab704363" category="list-text">No cluster principal do Kubernetes, crie o SnapshotInfo CR para obter detalhes internos.</block>
+  <block id="678346d79faaa65b2da52e6d7ddce845" category="list-text">No cluster secundário do Kubernetes, atualize o campo _spec.State_ do _tridentMirrorRelationship_ CR para _promoted_ e _spec.promotedSnapshotHandle_ para ser o internalName do snapshot.</block>
+  <block id="7b007b14980acd66e9301e02a5670f47" category="list-text">No cluster secundário do Kubernetes, confirme o status (campo status.State) do TrigentMirrorRelationship para promovido.</block>
+  <block id="f69101c0107c4bbf8f0ccc9141beb68b" category="section-title">Restaurar uma relação de espelhamento após um failover</block>
+  <block id="9a023cbe1d3be933d8edb6228f9901ce" category="paragraph">Antes de restaurar uma relação de espelho, escolha o lado que você deseja fazer como o novo primário.</block>
+  <block id="1c7011adbcc0afa258396aff4f10266b" category="list-text">No cluster secundário do Kubernetes, certifique-se de que os valores do campo _spec.remoteVolumeHandle_ no TrigentMirrorRelationship sejam atualizados.</block>
+  <block id="ffb25f01fda2538ae98bc0c4b4d465a6" category="list-text">No cluster secundário do Kubernetes, atualize o campo _spec.mirror_ do TrigentMirrorRelationship para<block ref="036bbe13de7250844b100bc381b59214" prefix=" " category="inline-code"></block>.</block>
+  <block id="41a593c0bede63aac2726a18e4599087" category="section-title">Operações adicionais</block>
+  <block id="429ffe8f0aaccc8922acaae0bea825a8" category="paragraph">O Astra Control Provisioner dá suporte às seguintes operações nos volumes primário e secundário:</block>
+  <block id="253093d00b66ff2357df5085c04b2758" category="section-title">Replique PVC primário para um novo PVC secundário</block>
+  <block id="301dcece9e67241c29ebbbac8a94274e" category="paragraph">Certifique-se de que você já tem um PVC primário e um PVC secundário.</block>
+  <block id="7f1c32cba6b98d1db7f3dfda1df76189" category="list-text">Exclua as CRDs PersistentVolumeClaim e TridentMirrorRelacionship do cluster secundário (destino) estabelecido.</block>
+  <block id="e655fd5342cff178f54ae5f5b2a3b7b6" category="list-text">Exclua o CRD do tridentMirrorRelationship do cluster primário (de origem).</block>
+  <block id="3eb69a135044d3f308d140dccb1dbe5e" category="list-text">Crie um novo CRD de TridentMirrorRelacionship no cluster primário (de origem) para o novo PVC secundário (de destino) que você deseja estabelecer.</block>
+  <block id="92c650dfb6284b5d24ed0e83a2338fa0" category="section-title">Redimensione um PVC espelhado, primário ou secundário</block>
+  <block id="66990a43216d28b5b6818b021d397574" category="paragraph">O PVC pode ser redimensionado como normal, o ONTAP irá expandir automaticamente qualquer destino flevxols se a quantidade de dados exceder o tamanho atual.</block>
+  <block id="4e2626fed5da19a4be8255f16a331609" category="section-title">Remova a replicação de um PVC</block>
+  <block id="e1abf7fa65d845d34c33d593ed070453" category="paragraph">Para remover a replicação, execute uma das seguintes operações no volume secundário atual:</block>
+  <block id="b3dd2c563dffb09f03c72bc16a72be62" category="list-text">Exclua o MirrorRelationship no PVC secundário. Isso quebra a relação de replicação.</block>
+  <block id="413ab8e64d0d4ccb3f08ef2a8653a525" category="list-text">Ou atualize o campo spec.State para _promovido_.</block>
+  <block id="c00cff9971607d7a0409066a0ecc3bcd" category="section-title">Excluir um PVC (que foi anteriormente espelhado)</block>
+  <block id="21c248e83f23afe590db7c4471350f23" category="paragraph">O Astra Control Provisioner verifica se há PVCs replicados e libera a relação de replicação antes de tentar excluir o volume.</block>
+  <block id="8ec9c60105332c1be8facc42b496e14b" category="section-title">Eliminar um TMR</block>
+  <block id="b4d20a51885b1a7645c486448d720b7e" category="paragraph">A exclusão de um TMR em um lado de um relacionamento espelhado faz com que o TMR restante passe para o estado _promovido_ antes que o Astra Control Provisioner conclua a exclusão. Se o TMR selecionado para exclusão já estiver no estado _promovido_, não há relacionamento de espelhamento existente e o TMR será removido e o Astra Control Provisioner promoverá o PVC local para _ReadWrite_. Essa exclusão libera os metadados do SnapMirror para o volume local no ONTAP. Se este volume for usado em uma relação de espelho no futuro, ele deve usar um novo TMR com um estado de replicação de volume _established_ ao criar a nova relação de espelho.</block>
+  <block id="d41660149eb8930ad76a1dfe3dc5f2e3" category="section-title">Atualizar relações de espelho quando o ONTAP estiver online</block>
+  <block id="7079164c5ba86439b0719782591106dd" category="paragraph">As relações de espelho podem ser atualizadas a qualquer momento depois que são estabelecidas. Pode utilizar os<block ref="abb3a949c6d70e3e5d92f4ad2bf143a3" prefix=" " category="inline-code"></block> campos ou<block ref="ff0b4e3d4dfe8f6074b6943947345d4d" prefix=" " category="inline-code"></block> para atualizar as relações. Ao promover um volume de destino para um volume ReadWrite regular, você pode usar _promotedSnapshotHandle_ para especificar um snapshot específico para restaurar o volume atual.</block>
+  <block id="4eecab048a7c90cfb92e0f04884686e8" category="section-title">Atualizar relações de espelho quando o ONTAP estiver offline</block>
+  <block id="e3b68b1c19a14af5fcb94e147290aec6" category="paragraph">Você pode usar um CRD para executar uma atualização do SnapMirror sem que o Astra Control tenha conetividade direta com o cluster do ONTAP. Consulte o seguinte formato de exemplo do TrigentActionMirrorUpdate:</block>
+  <block id="bc08468157c4a9e3a30eed7ba64cc309" category="paragraph"><block ref="1f9dfae8a369525bce4996df40963532" prefix="" category="inline-code"></block> Reflete o estado do CRD do TrigentActionMirrorUpdate. Ele pode tomar um valor de _successful_, _in progress_ ou _Failed_.</block>
+  <block id="261f0b7f37f0dd290043aab033357d32" category="summary">Habilite o Astra Control Provisioner a acessar recursos avançados de gerenciamento e provisionamento de storage.</block>
+  <block id="372270db22900d45998a077917ef04e1" category="paragraph">As versões 23,10 e posteriores do Trident incluem a opção de usar o Astra Control Provisioner, que permite que usuários licenciados do Astra Control acessem o recurso avançado de provisionamento de storage. O Astra Control Provisioner fornece essa funcionalidade estendida, além da funcionalidade padrão baseada em CSI Astra Trident. Você pode usar este procedimento para ativar e instalar o Astra Control Provisioner.</block>
+  <block id="fe562808e3d8ddc1360f041ac9ecb065" category="paragraph">Sua assinatura do Astra Control Service inclui automaticamente a licença para uso do Astra Control Provisioner.</block>
+  <block id="f2e4c52f80f28c72fda2741d6bbe571d" category="paragraph">Nas próximas atualizações do Astra Control, o parceiro Astra Control substituirá o Astra Trident como provisionador de storage e orquestrador e será obrigatório para uso do Astra Control. Por causa disso, é altamente recomendável que os usuários do Astra Control ativem o Astra Control Provisioner. O Astra Trident continuará a ser de código aberto e será lançado, mantido, suportado e atualizado com o novo CSI e outros recursos do NetApp.</block>
+  <block id="ef7cd57a49dea042053eb666f78bd5b8" category="paragraph-title">Como sei se preciso habilitar o Astra Control Provisioner?</block>
+  <block id="4a78505266dc87d60e1a9c0e6055a555" category="inline-link-macro">Adicione o cluster ao Astra Control</block>
+  <block id="d714811f6da2ed431b6eca95b73f5d45" category="paragraph">Se você adicionar um cluster ao Astra Control Service que não tenha o Astra Trident instalado anteriormente, o cluster será marcado como<block ref="4358876405775b10c44268aeeeec5f50" prefix=" " category="inline-code"></block>. Depois de <block ref="75139e2f1b4db9a393ec7ec4bdabdbe4" category="inline-link-macro-rx"></block>você , o Astra Control Provisioner será ativado automaticamente.</block>
+  <block id="5d7a456d65366314253c7e21aba42172" category="paragraph">Se o cluster não estiver marcado<block ref="4358876405775b10c44268aeeeec5f50" prefix=" " category="inline-code"></block>, ele será marcado<block ref="452b2caa4d3425293734c7cc9206a4b3" prefix=" " category="inline-code"></block> por uma das seguintes opções:</block>
+  <block id="9585e5b63f95bef1b4fd569541c78342" category="list-text">Ele está usando uma versão mais antiga do Astra Trident</block>
+  <block id="87c76fd90e61cbd3116a0099aca89325" category="list-text">Ele está usando um Astra Trident 23,10 que ainda não tem a opção de provisionador habilitada</block>
+  <block id="eaf1911fc60b6d69a319ebdf0480e0ca" category="list-text">É um tipo de cluster que não permite a ativação automática</block>
+  <block id="1fbfdc858b0f52a228444f0fd80e23ea" category="paragraph">Para<block ref="452b2caa4d3425293734c7cc9206a4b3" prefix=" " category="inline-code"></block> casos, use estas instruções para ativar manualmente o Astra Control Provisioner para seu cluster.</block>
+  <block id="6a45b1d4132918a64c028520724d18e3" category="inline-image-macro">Uma captura de tela que descreve a elegibilidade do cluster no fluxo de trabalho Adicionar cluster</block>
+  <block id="057afae3fe65d4f24b79bd50d34734b1" category="paragraph"><block ref="057afae3fe65d4f24b79bd50d34734b1" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="7753d368684bfc31807afc2b7f3cd9c0" category="paragraph-title">Antes de ativar o Astra Control Provisioner</block>
+  <block id="0360a2e5fb08211931ade5b67746abd1" category="paragraph">Se você já tiver um Astra Trident sem o parceiro Astra Control e quiser habilitar o parceiro Astra Control, faça o seguinte primeiro:</block>
+  <block id="fa11ed24405872fcaff3d72114365e10" category="list-text">*Se você tiver o Astra Trident instalado, confirme que sua versão está dentro de uma janela de quatro versões*: Você pode fazer uma atualização direta para o Astra Trident 24,02 com o Astra Control Provisioner se o seu Astra Trident estiver dentro de uma janela de quatro versões da versão 24,02. Por exemplo, você pode fazer o upgrade diretamente do Astra Trident 23,04 para o 24,02.</block>
+  <block id="513c5f0b4153f3c855edd085e129578d" category="list-text">*Confirme que seu cluster tem uma arquitetura de sistema AMD64*: A imagem Astra Control Provisioner é fornecida em arquiteturas de CPU AMD64 e ARM64, mas apenas AMD64 é compatível com Astra Control.</block>
+  <block id="cc74ae067ae4451424c2712fd0b0a766" category="list-text">Acesse o Registro de imagem do NetApp Astra Control:</block>
+  <block id="f16793904b509a3f7a260653784d0c7b" category="list-text">Faça logon na IU do Astra Control Service e Registre sua ID de conta do Astra Control.</block>
+  <block id="8cbb6fb4fc8e72b38ebb357b93aac0e6" category="list-text">Selecione o ícone de figura no canto superior direito da página.</block>
+  <block id="28478864077d4a55fa88e064f317cc13" category="list-text">Selecione *Acesso à API*.</block>
+  <block id="054eff009cdf03269a420a2370e7dea5" category="list-text">Anote o seu ID de conta.</block>
+  <block id="247c4bd908bc1de2fd5a809200d877d2" category="list-text">Na mesma página, selecione *Generate API token* e copie a cadeia de token da API para a área de transferência e salve-a no seu editor.</block>
+  <block id="98720da814dca1d713a7ea34c223cc71" category="list-text">Faça login no Registro Astra Control usando seu método preferido:</block>
+  <block id="cbad356d2a2c08e20ea2766c2d78305f" category="inline-xref">próxima seção</block>
+  <block id="bc50f89e7547553ce82affde0adc4c76" category="list-text">(Apenas registos personalizados) siga estes passos para mover a imagem para o seu registo personalizado. Se você não estiver usando um Registro, siga as etapas do operador Trident no <block ref="d433543a9de56c735bd2827329689b0d" category="inline-xref-macro-rx"></block>.</block>
+  <block id="be1ad1396eeb1a14ec670f22fa8db431" category="admonition">Você pode usar Podman em vez de Docker para os seguintes comandos. Se você estiver usando um ambiente Windows, o PowerShell é recomendado.</block>
+  <block id="dfd1625b65bec1b019b2006f2a2d6f7f" category="list-text">Extraia a imagem Astra Control Provisioner do Registro:</block>
+  <block id="e6fa19c87424a75415bf86154af17fd6" category="admonition">A imagem puxada não suportará múltiplas plataformas e só suportará a mesma plataforma que o host que puxou a imagem, como o Linux AMD64.</block>
+  <block id="81eeab9506186e2dca8faefa78d54067" category="paragraph">Exemplo:</block>
+  <block id="2bd126572bba3a2e960ce1c5f2a946bf" category="list-text">Marque a imagem:</block>
+  <block id="1bfe2fd1955082292d7e5903ef66a782" category="list-text">Envie a imagem para o seu registo personalizado:</block>
+  <block id="91c18a5dec9cf1fbb20ffffd101409cd" category="open-title">Grua</block>
+  <block id="1165b577af138b2a4ee1e0d044eea398" category="list-text">Copie o manifesto Astra Control Provisioner para o seu Registro personalizado:</block>
+  <block id="b948a23f0cbc4ea95e165a5489a3b7ce" category="inline-link">Operador (manualmente ou com Helm) ou prefixo do cliente</block>
+  <block id="55b03f72140649802821ee27f611f93d" category="list-text">Determine se o método de instalação original do Astra Trident usou um<block ref="a1a09c66ad6b9d6162d6a0a2aaef123f" category="inline-link-rx"></block>.</block>
+  <block id="635815058628a337f65c0953162ac32e" category="list-text">Ative o Astra Control Provisioner no Astra Trident usando o método de instalação que você usou originalmente:</block>
+  <block id="df0a28182823b029a1d84bec05a7726e" category="open-title">Operador do Astra Trident</block>
+  <block id="b88c081e2a4b249f94292c6f7bf16bdc" category="inline-link">Baixe o instalador do Astra Trident e extraia-o.</block>
+  <block id="f1f44f407a364d092b4a3b446d6593b5" category="list-text"><block ref="5512264baa78f7d10bb082092407833c" category="inline-link-rx"></block>.</block>
+  <block id="b53ea1f6729ee2c1c5dc303c5e9bb360" category="list-text">Siga estas etapas se você ainda não tiver instalado o Astra Trident ou se tiver removido o operador da sua implantação original do Astra Trident:</block>
+  <block id="1802fc07d2de18110ae52621540f337e" category="list-text">Crie o CRD:</block>
+  <block id="b19df824e7baecb971d0fdd39542c6d6" category="list-text">Crie o namespace Trident <block ref="a40796e67d7096bdb1a461d9369987ae" prefix="(" category="inline-code"></block>) ou confirme se o namespace Trident ainda existe <block ref="929ac53a7aaa18d0ab7bfd29e3b89c45" prefix="(" category="inline-code"></block>). Se o namespace tiver sido removido, crie-o novamente.</block>
+  <block id="2ef8c3c36d9188d9ee49c78edd817912" category="list-text">Atualize o Astra Trident para 24.06.0:</block>
+  <block id="84b3a17dd4da0cadee9516d2c742e8e1" category="admonition">Para clusters que executam o Kubernetes 1,24 ou anterior,<block ref="bd2cc8575fe69c7f775292759380c838" prefix=" " category="inline-code"></block> use o . Para clusters que executam o Kubernetes 1,25 ou posterior,<block ref="5a02ebff4889c2de0379a0fb10bed282" prefix=" " category="inline-code"></block> use o .</block>
+  <block id="4cf0920f58032b65295d4d0255354879" category="list-text">Verifique se o Astra Trident está em execução:</block>
+  <block id="54472d1da4b0c6eadf8684e846b25dcc" category="paragraph">Resposta:</block>
+  <block id="70da7fdb746f99191502821d5d3b6d53" category="list-text">[[Pull-Secrets]]se você tem um Registro que usa segredos, crie um segredo para usar para puxar a imagem Astra Control Provisioner:</block>
+  <block id="531dc1bead45003a393e1e227a07b0fa" category="list-text">Edite o TridentOrchestrator CR e faça as seguintes edições:</block>
+  <block id="5a3079c9cd04eea596744e2187f70142" category="list-text">Defina um local de Registro personalizado para a imagem Astra Trident ou extraia-a do Registro Astra Control <block ref="c063da0c4010a4b533407346a02dd83c" prefix="(" category="inline-code"></block>ou<block ref="229b44e1a628432d62b4cedc033aedf6" prefix=" " category="inline-code"></block>).</block>
+  <block id="8b1959e0a8b41248dad790a861dbfdd9" category="list-text">Ative o Astra Control Provisioner <block ref="b146a884950a14beaf7f7c32ccceea96" prefix="(" category="inline-code"></block>).</block>
+  <block id="1e402f84b3c57afa8aaf19779147556d" category="list-text">Defina o local de Registro personalizado para a imagem Astra Control Provisioner ou extraia-a do Registro Astra Control <block ref="6fd47d0a38cf5afec555b659aaed6104" prefix="(" category="inline-code"></block>ou<block ref="e419be77a3ebdbec678982ec1d2d40b2" prefix=" " category="inline-code"></block>).</block>
+  <block id="9f28a023f26c22c040e88a7f3791d0ed" category="inline-xref">a imagem puxa segredos</block>
+  <block id="f3a11fe989360f45110df3758e7f0641" category="list-text">Se tiver estabelecido <block ref="565c9dfc4921fbeccbde323bc8a44cad" category="inline-xref-macro-rx"></block> anteriormente neste procedimento, pode defini-los aqui <block ref="bafdae7aa6abb1556ef1b0d17efe7509" prefix="(" category="inline-code"></block>). Use o mesmo nome secreto que você estabeleceu nas etapas anteriores.</block>
+  <block id="aa3ae8b6c1e4a29f9314a8bbc401330f" category="list-text">Salve e saia do arquivo. O processo de implantação começará automaticamente.</block>
+  <block id="4f27e6f7f8f95f32f55540801c5f6db0" category="list-text">Verifique se o operador, a implantação e as replicasets são criados.</block>
+  <block id="6849b59104c35075b063cf35570fde13" category="admonition">Deve haver apenas *uma instância* do operador em um cluster do Kubernetes. Não crie várias implantações do operador Astra Trident.</block>
+  <block id="faba39ec34eed502aea6d805d792a9ea" category="list-text">Verifique se o<block ref="49c9f6c98d04c8c76aee7448fd9136ed" prefix=" " category="inline-code"></block> contentor está em execução e se<block ref="507c6bbca2ad57c69e89a97ee8714536" prefix=" " category="inline-code"></block> está<block ref="50ce33a86e6915635518e9752cf0a12f" prefix=" " category="inline-code"></block> com um status de<block ref="98dd43dfae05b11befe1f140e0ec787a" prefix=" " category="inline-code"></block>:</block>
+  <block id="6942401e8cfb1a0fc7b82ec1dcda7d32" category="list-text"><block ref="b0e92e3807bd982cc8fd58230062a04f" category="inline-link-rx"></block>.</block>
+  <block id="a65211330b142f51904ccfb3741cc124" category="inline-link">Se você tiver um Astra Trident existente, desinstale-o do cluster que o hospeda</block>
+  <block id="00c4331aab8ed2101088511f96b6af8e" category="list-text"><block ref="f21e19b64d79b0da0ff48729d1b28669" category="inline-link-rx"></block>.</block>
+  <block id="005a56f182fe268e9f6977b39114eab8" category="list-text">Instalar o Astra Trident com a previsão de controle Astra ativada <block ref="87d6b9737ff6f9e44e3dd25c182cf495" prefix="(" category="inline-code"></block>):</block>
+  <block id="11015cc0e053d44034684218fbb49508" category="list-text">Confirme se o Astra Control Provisioner foi ativado:</block>
+  <block id="e87cd9f9f3f0bdb5a644fb2aa2415f5b" category="list-text">Se tiver o Astra Trident 23.07.1 ou anterior instalado,<block ref="956dce94688d94fac89c002857c93b5d" category="inline-link-rx"></block> o operador e outros componentes.</block>
+  <block id="c35a7e0e7f42e740c64a0b6fdade1fe3" category="list-text">Se o cluster do Kubernetes estiver executando o 1,24 ou anterior, exclua a psp:</block>
+  <block id="02cc60ae4326121ce3bc2b5fdb24de58" category="list-text">Atualize o gráfico Helm:</block>
+  <block id="b0f226ab4f18ed3c3dd4ee74affdea76" category="list-text">Liste as imagens:</block>
+  <block id="be7552e8e2fb2ab01d08b162bf54e206" category="list-text">Certifique-se de que o Trident-Operator 24.06.0 está disponível:</block>
+  <block id="70b739f3363e6b3cd5f0c896d90af9c6" category="list-text">Utilize<block ref="0562418e6d9a76d0dd22b2f186a2203d" prefix=" " category="inline-code"></block> e execute uma das seguintes opções que incluem estas definições:</block>
+  <block id="9fe27ee3cf7416ee3af4516cf89a2b4c" category="list-text">Um nome para o local de implantação</block>
+  <block id="8d4c721df5c5b813b86a2d1eb619c735" category="list-text">A versão Astra Trident</block>
+  <block id="7dba4177f42e6622145f408eb88b1cba" category="list-text">O nome da imagem Astra Control Provisioner</block>
+  <block id="7b0fc32fdb3c2378c2c39008d29aaa43" category="list-text">A bandeira para habilitar o provisionador</block>
+  <block id="37ee7516a84d6949e4e0bde03e129758" category="inline-link">Imagens de Trident</block>
+  <block id="29e638c426512b56521aa694976562ea" category="list-text">(Opcional) Um caminho de Registro local. Se você estiver usando um Registro local, o<block ref="97e5914991475a979ee93ba0d709c399" category="inline-link-rx"></block> pode estar localizado em um Registro ou Registros diferentes, mas todas as imagens CSI devem estar localizadas no mesmo Registro.</block>
+  <block id="4795c928314a82e5be360b646a3a3aac" category="list-text">O namespace Trident</block>
+  <block id="804c8c9903e49e8cab0717f41b883f9a" category="list-text">Imagens sem registo</block>
+  <block id="3e10c4dd91af2dc1835b50343bc5fbd0" category="list-text">Imagens em um ou mais Registros</block>
+  <block id="d09a3f23170df63b9065e78b7eb80224" category="paragraph">Se você tiver algum problema na implantação do Trident usando o Helm, execute este comando para desinstalar completamente o Astra Trident:</block>
+  <block id="3897d04922674a762953f58e38463cb0" category="inline-link">Remova completamente CRDS Astra Trident</block>
+  <block id="98709e6abe377fa2083cb4a36ba22ddc" category="paragraph">*Não*<block ref="d47e0c203a38c85d577cb0ed29c7fad1" category="inline-link-rx"></block> como parte da sua desinstalação antes de tentar ativar o Astra Control Provisioner novamente.</block>
+  <block id="8eea62084ca7e541d918e823422bd82e" category="paragraph-title">Resultado</block>
+  <block id="e1e016d44c99ff12155d4c6ec97b954b" category="paragraph">A funcionalidade Astra Control Provisioner está ativada e você pode usar todos os recursos disponíveis para a versão em execução.</block>
+  <block id="bfd6393303a90c7eebadedd13edf658b" category="paragraph">Depois que o Astra Control Provisioner for instalado, o cluster que hospeda o provisionador na IU do Astra Control mostrará um<block ref="47f79829be244bd727d1881108343390" prefix=" " category="inline-code"></block> número de versão instalado em vez<block ref="f1112223b41fddc71fd6a626582dfb78" prefix=" " category="inline-code"></block> de campo e atual.</block>
+  <block id="b705f14969fa7c55d16aa5c0ef9c37a0" category="inline-image-macro">Uma captura de tela mostrando a localização da versão ACP na UI</block>
+  <block id="298c14088e0ed4580971821ac46240ba" category="paragraph"><block ref="298c14088e0ed4580971821ac46240ba" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="a368b742ba77bda413a93bc1a4d09ae3" category="inline-link">O Astra Trident atualiza a documentação</block>
+  <block id="38798f90f44856e877b3d5951137f166" category="list-text"><block ref="38798f90f44856e877b3d5951137f166" category="inline-link-rx"></block></block>
+  <block id="1738a6ff1f0b418ce16cf74aabdceff1" category="section-title">Restauração de volume no local a partir de um instantâneo</block>
+  <block id="b9b1d2445ee19f9cad5acde381148739" category="paragraph">O Astra Control Provisioner fornece restauração rápida de volume no local a partir de um snapshot usando o<block ref="2aabb3b01d0d54317a9eeef910e001f6" prefix=" " category="inline-code"></block> (TASR) CR. Esse CR funciona como uma ação imperativa do Kubernetes e não persiste após a conclusão da operação.</block>
+  <block id="7e9a6544782dc63f584ac4ae55e567bd" category="paragraph">O Astra Control Provisioner oferece suporte à restauração de snapshot no<block ref="73a3350a1b91aeb6e2836fdf5975672c" prefix=" " category="inline-code"></block><block ref="3016c12c1db45f14c80c9c1731b9c26a" prefix=" " category="inline-code"></block> , ,<block ref="8321592ce24c8a122ecf26a63cfca407" prefix=" " category="inline-code"></block><block ref="844e84da8e822b4a33c4d8188da97937" prefix=" " category="inline-code"></block> , , , ,<block ref="bc5779a2d33eeb1304bae57f15920cfc" prefix=" " category="inline-code"></block><block ref="5935ea92cdd7d975b4e764b429f21c01" prefix=" " category="inline-code"></block>, e<block ref="c0d2a793e71b152662b3e8cd2da00620" prefix=" " category="inline-code"></block> drivers.</block>
+  <block id="e0bc0596a7d966cd8dab3ee0e924c9b5" category="paragraph">Você deve ter um PVC vinculado e instantâneo de volume disponível.</block>
+  <block id="d785d18f53979794a4ef9e08d186e3c4" category="list-text">Verifique se o status do PVC está vinculado.</block>
+  <block id="d0f2b7254060d8a37c98c1eb4289586d" category="list-text">Verifique se o instantâneo do volume está pronto para ser usado.</block>
+  <block id="da6aadede1bc870c9042c660fdf93f25" category="list-text">Crie o TASR CR. Este exemplo cria um CR para instantâneo de PVC<block ref="30520f4f96804df83914260b79f55962" prefix=" " category="inline-code"></block> e volume<block ref="06f2874897d3ec8426ec85e0ffda5544" prefix=" " category="inline-code"></block> .</block>
+  <block id="0c9991859e53bf37c58a2fd1233eb478" category="list-text">Aplique o CR para restaurar a partir do instantâneo. Este exemplo restaura do instantâneo<block ref="30520f4f96804df83914260b79f55962" prefix=" " category="inline-code"></block>.</block>
+  <block id="e932e8b67111a2dc118d7599f04cdc8b" category="paragraph">O Astra Control Provisioner restaura os dados do snapshot. Você pode verificar o status de restauração de snapshot.</block>
+  <block id="454c5148c2a664f37fc49833dc491272" category="list-text">Na maioria dos casos, o Astra Control Provisioner não tentará automaticamente a operação em caso de falha. Terá de efetuar novamente a operação.</block>
+  <block id="c83b74c2020dd836f5b401ecda0da78c" category="list-text">Os usuários do Kubernetes sem acesso de administrador podem ter permissão para que o administrador crie um TASR CR em seu namespace de aplicativo.</block>
 </blocks>
