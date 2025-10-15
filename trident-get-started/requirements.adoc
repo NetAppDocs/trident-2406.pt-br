@@ -23,7 +23,7 @@ Antes de instalar o Astra Trident, você deve analisar esses requisitos gerais d
 .<strong> informações essenciais sobre o Astra Trident </strong>
 [%collapsible%open]
 ====
-* O Kubernetes 1,31 agora é compatível com o Astra Trident. Atualize o Astra Trident antes de atualizar o Kubernetes.
+* O Kubernetes 1.30 agora é compatível com o Astra Trident. Atualize o Astra Trident antes de atualizar o Kubernetes.
 * O Astra Trident reforça estritamente o uso de configuração multipathing em ambientes SAN, com um valor recomendado de `find_multipaths: no` no arquivo multipath.conf.
 +
 O uso de configuração não multipathing ou o uso `find_multipaths: yes` de ou `find_multipaths: smart` valor no arquivo multipath.conf resultará em falhas de montagem. O Astra Trident recomenda o uso `find_multipaths: no` desde o lançamento de 21,07.
@@ -38,14 +38,14 @@ O uso de configuração não multipathing ou o uso `find_multipaths: yes` de ou 
 O Astra Trident é compatível com vários mecanismos de contêiner e orquestradores, incluindo os seguintes:
 
 * Anthos On-Prem (VMware) e Anthos em bare metal 1,16
-* Kubernetes 1,24 - 1,31
+* Kubernetes 1.24 - 1.30
 * OpenShift 4,10 - 4,16
 
 
 O operador Trident é suportado com estas versões:
 
 * Anthos On-Prem (VMware) e Anthos em bare metal 1,16
-* Kubernetes 1,24 - 1,31
+* Kubernetes 1.24 - 01.30
 * OpenShift 4,10 - 4,16
 
 
@@ -83,56 +83,56 @@ A tabela abaixo resume os recursos disponíveis com esta versão do Astra Triden
 
 
 | Astra Trident  a| 
-1,24 - 1,31
+1,24 - 1,30
  a| 
 Não
 
 
 
 | Instantâneos de volume  a| 
-1,24 - 1,31
+1,24 - 1,30
  a| 
 Não
 
 
 
 | PVC a partir de instantâneos de volume  a| 
-1,24 - 1,31
+1,24 - 1,30
  a| 
 Não
 
 
 
 | Redimensionamento iSCSI PV  a| 
-1,24 - 1,31
+1,24 - 1,30
  a| 
 Não
 
 
 
 | ONTAP bidirectional CHAP  a| 
-1,24 - 1,31
+1,24 - 1,30
  a| 
 Não
 
 
 
 | Políticas de exportação dinâmica  a| 
-1,24 - 1,31
+1,24 - 1,30
  a| 
 Não
 
 
 
 | Operador Trident  a| 
-1,24 - 1,31
+1,24 - 1,30
  a| 
 Não
 
 
 
 | Topologia de CSI  a| 
-1,24 - 1,31
+1,24 - 1,30
  a| 
 Não
 
@@ -192,7 +192,7 @@ Para instalações com conexão de ar, a lista a seguir é uma referência das i
 | Versões do Kubernetes | Imagem do recipiente 
 
 
-| v1.24.0, v1.25.0, v1.26.0, v1.27.0, v1.28.0, v1.29.0, v1.30.0, v1.31.0  a| 
+| v1.24.0, v1.25.0, v1.26.0, v1.27.0, v1.28.0, v1.29.0, v1.30.0  a| 
 * docker.io/NetApp/Trident:24.06.0
 * docker.io/NetApp/Trident-AutoSupport:24,06
 * provisionador do registry.k8s.io/sig-storage/csi:v4,0.1
