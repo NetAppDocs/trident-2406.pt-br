@@ -18,7 +18,7 @@ Antes de usar o operador Trident para atualizar o Astra Trident, você deve ente
 
 == Manuseio de atualização do operador Trident
 
-Um dos muitos link:../trident-get-started/kubernetes-deploy.html["Benefícios de usar o operador Trident"] que instalar e atualizar o Astra Trident é o manuseio automático de objetos Kubernetes e Astra Trident sem interromper os volumes montados existentes. Dessa forma, o Astra Trident pode dar suporte a atualizações sem inatividade, ou link:https://kubernetes.io/docs/tutorials/kubernetes-basics/update/update-intro/["_atualizações contínuas_"^]. Em particular, o operador do Trident se comunica com o cluster do Kubernetes para:
+Uma das muitas link:../trident-get-install/kubernetes-deploy.html["Benefícios de usar o operador Trident"] vantagens de instalar e atualizar o Astra Trident é o gerenciamento automático dos objetos do Astra Trident e do Kubernetes sem interromper os volumes montados existentes. Dessa forma, o Astra Trident pode suportar atualizações sem inatividade link:https://kubernetes.io/docs/tutorials/kubernetes-basics/update/update-intro/["_atualizações contínuas_"^]. Em particular, o operador do Trident se comunica com o cluster Kubernetes para:
 
 * Exclua e recrie a implantação do controlador Trident e o nó DaemonSet.
 * Substitua o pod de nó Trident e o pod de nó Trident por novas versões.
@@ -30,7 +30,7 @@ Um dos muitos link:../trident-get-started/kubernetes-deploy.html["Benefícios de
 
 
 
-TIP: Para obter mais informações sobre a arquitetura Astra Trident no cluster Kubernetes, link:trident-concepts/intro.html#astra-trident-architecture["A arquitetura do Astra Trident"]consulte .
+TIP: Para obter mais informações sobre a arquitetura do Astra Trident no cluster Kubernetes, consulte link:../trident-get-started/intro.html#astra-trident-architecture["A arquitetura do Astra Trident"].
 
 
 

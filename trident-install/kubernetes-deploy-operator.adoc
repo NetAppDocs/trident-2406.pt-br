@@ -1,6 +1,6 @@
 ---
 sidebar: sidebar 
-permalink: trident-get-started/kubernetes-deploy-operator.html 
+permalink: trident-install/kubernetes-deploy-operator.html 
 keywords: deploy, astra trident, methods, operator, tridentctl, registry, registries 
 summary: Você pode implantar manualmente o operador Trident para instalar o Astra Trident. Este processo aplica-se a instalações onde as imagens de contentor exigidas pelo Astra Trident não são armazenadas em um Registro privado. 
 ---
@@ -35,7 +35,7 @@ O uso de configuração não multipathing ou o uso `find_multipaths: yes` de ou 
 
 == Implante manualmente o operador Trident e instale o Trident
 
-Revise link:../trident-get-started/kubernetes-deploy.html["a visão geral da instalação"] para garantir que você atendeu aos pré-requisitos de instalação e selecionou a opção de instalação correta para o seu ambiente.
+Revise link:../trident-install/kubernetes-deploy.html["a visão geral da instalação"] para garantir que você atendeu aos pré-requisitos de instalação e selecionou a opção de instalação correta para o seu ambiente.
 
 .Antes de começar
 Antes de iniciar a instalação, faça login no host Linux e verifique se ele está gerenciando um trabalho e link:requirements.html["Cluster compatível com Kubernetes"^]se você tem o Privileges necessário.
