@@ -16,6 +16,7 @@ O operador Trident permite personalizar a instalação do Astra Trident usando o
 
 
 
+[[understanding-controller-pods-and-node-pods]]
 == Compreensão dos pods dos nós e dos pods do controlador
 
 O Astra Trident é executado como um único pod de controlador, além de um pod de nó em cada nó de trabalho no cluster. O pod de nó deve estar em execução em qualquer host onde você queira potencialmente montar um volume Astra Trident.
@@ -28,6 +29,7 @@ Kubernetes link:https://kubernetes.io/docs/concepts/scheduling-eviction/assign-p
 
 
 
+[[configuration-options]]
 == Opções de configuração
 
 
@@ -117,6 +119,7 @@ NOTE: Para obter mais informações sobre a formatação dos parâmetros do pod,
 
 
 
+[[details-about-force-detach]]
 === Detalhes sobre Force Detach
 
 O Force Detach está disponível apenas para `ontap-san` e. `ontap-san-economy` Antes de ativar a desconexão forçada, o desligamento do nó (NGNS) não gracioso deve ser ativado no cluster do Kubernetes. Para obter mais informações, link:https://kubernetes.io/docs/concepts/architecture/nodes/#non-graceful-node-shutdown["Kubernetes: Desligamento do nó não gracioso"^]consulte .
@@ -142,6 +145,7 @@ Quando a integridade do nó é restaurada e a taint é removida, o Astra Trident
 
 
 
+[[sample-configurations]]
 == Exemplos de configurações
 
 Você pode usar os atributos em <<Opções de configuração>> ao definir `TridentOrchestrator` para personalizar sua instalação.

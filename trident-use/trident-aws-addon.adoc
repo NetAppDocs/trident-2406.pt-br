@@ -16,6 +16,7 @@ O Astra Trident simplifica o gerenciamento de armazenamento do Amazon FSX for Ne
 
 
 
+[[prerequisites]]
 == Pré-requisitos
 
 Antes de configurar o complemento Astra Trident para AWS EKS, verifique se você tem o seguinte:
@@ -32,6 +33,7 @@ Antes de configurar o complemento Astra Trident para AWS EKS, verifique se você
 
 
 
+[[steps]]
 == Passos
 
 . No cluster do EKS Kubernetes, navegue até a guia *Complementos*.
@@ -71,6 +73,7 @@ image::../media/aws-eks-05.png[aws eks 05]
 
 
 
+[[installuninstall-the-astra-trident-eks-add-on-using-cli]]
 == Instale/desinstale o complemento Astra Trident EKS usando a CLI
 
 .Instale o complemento Astra Trident EKS usando a CLI:

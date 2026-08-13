@@ -13,6 +13,7 @@ summary: 'Usando o Astra Trident com o Amazon FSX for NetApp ONTAP, você garant
 
 
 
+[[ontap-san-and-nas-driver-integration]]
 == Integração de driver SAN e nas ONTAP
 
 Você pode criar um arquivo de back-end usando as credenciais SVM (nome de usuário e senha) armazenadas no AWS Secret Manager, conforme mostrado neste exemplo:
@@ -76,6 +77,7 @@ Para obter informações sobre como criar backends, consulte estas páginas:
 
 
 
+[[fsx-for-ontap-driver-details]]
 == Detalhes do driver FSX for ONTAP
 
 Você pode integrar o Astra Trident ao Amazon FSX for NetApp ONTAP usando os seguintes drivers:
@@ -91,6 +93,7 @@ Para obter informações sobre o condutor, link:../trident-use/ontap-nas.html["C
 
 
 
+[[example-configurations]]
 == Exemplos de configurações
 
 .Configuração do AWS FSX for ONTAP com gerenciador de segredos
@@ -136,6 +139,7 @@ parameters:
 ====
 
 
+[[backend-advanced-configuration-and-examples]]
 == Configuração avançada de backend e exemplos
 
 Consulte a tabela a seguir para obter as opções de configuração de back-end:
@@ -229,6 +233,7 @@ Consulte a tabela a seguir para obter as opções de configuração de back-end:
 |===
 
 
+[[backend-configuration-options-for-provisioning-volumes]]
 == Opções de configuração de back-end para volumes de provisionamento
 
 Você pode controlar o provisionamento padrão usando essas opções na `defaults` seção da configuração. Para obter um exemplo, consulte os exemplos de configuração abaixo.
@@ -262,7 +267,7 @@ Você pode controlar o provisionamento padrão usando essas opções na `default
 | `encryption` | Ative a criptografia de volume do NetApp (NVE) no novo volume; o padrão é `false`. O NVE deve ser licenciado e habilitado no cluster para usar essa opção. Se o NAE estiver ativado no back-end, qualquer volume provisionado no Astra Trident será o NAE ativado. Para obter mais informações, consulte: link:../trident-reco/security-reco.html["Como o Astra Trident funciona com NVE e NAE"]. | `false` 
 
 
-| `luksEncryption` | Ativar encriptação LUKS. link:../trident-reco/security-reco.html#Use-Linux-Unified-Key-Setup-(LUKS)["Usar a configuração de chave unificada do Linux (LUKS)"]Consulte a . Apenas SAN. | "" 
+| `luksEncryption` | Ative a criptografia LUKS. Consulte link:../trident-reco/security-luks.html["Usar a configuração de chave unificada do Linux (LUKS)"]. Somente SAN. | "" 
 
 
 | `tieringPolicy` | Política de disposição em camadas para usar	`none` | `snapshot-only` Para configuração pré-ONTAP 9.5 SVM-DR 
@@ -275,6 +280,7 @@ Você pode controlar o provisionamento padrão usando essas opções na `default
 |===
 
 
+[[prepare-to-provision-smb-volumes]]
 == Prepare-se para provisionar volumes SMB
 
 Você pode provisionar volumes SMB usando `ontap-nas` o driver. Antes de concluir <<Integração de driver SAN e nas ONTAP>>as etapas a seguir.

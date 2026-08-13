@@ -16,6 +16,7 @@ O Astra Trident é executado como um único Pod de controladora e um pod de nó 
 
 
 
+[[understanding-controller-pods-and-node-pods]]
 == Compreensão dos pods dos nós e dos pods do controlador
 
 O Astra Trident é implantado como <<Pod do controlador Trident>>um único e um ou mais <<Pods do nó Trident>> no cluster Kubernetes e usa contentores padrão do Kubernetes _CSI Sidecar_ para simplificar a implantação de plug-ins do CSI. link:https://kubernetes-csi.github.io/docs/sidecar-containers.html["Kubernetes CSI Sidecar contêineres"^] São mantidos pela comunidade do Kubernetes Storage.
@@ -31,6 +32,7 @@ image::../media/trident-arch.png[Diagrama da arquitetura Astra Trident no cluste
 
 
 
+[[trident-controller-pod]]
 === Pod do controlador Trident
 
 O Pod do controlador Trident é um único Pod que executa o plug-in do controlador CSI.
@@ -45,6 +47,7 @@ image::../media/controller-pod.png[Diagrama do Pod do controlador Trident que ex
 
 
 
+[[trident-node-pods]]
 === Pods do nó Trident
 
 Os pods de nó Trident são pods privilegiados que executam o plug-in do nó CSI.
@@ -59,6 +62,7 @@ image::../media/node-pod.png[Diagrama do Pod do nó Trident executando o plug-in
 
 
 
+[[supported-kubernetes-cluster-architectures]]
 == Arquiteturas de cluster Kubernetes compatíveis
 
 O Astra Trident é compatível com as seguintes arquiteturas de Kubernetes:

@@ -16,6 +16,7 @@ Entenda os requisitos, as opções de autenticação e as políticas de exporta�
 
 
 
+[[requirements]]
 == Requisitos
 
 * Para todos os back-ends ONTAP, o Astra Trident requer pelo menos um agregado atribuído ao SVM.
@@ -26,6 +27,7 @@ Entenda os requisitos, as opções de autenticação e as políticas de exporta�
 
 
 
+[[authenticate-the-ontap-backend]]
 == Autenticar o back-end do ONTAP
 
 O Astra Trident oferece dois modos de autenticação no back-end do ONTAP.
@@ -41,6 +43,7 @@ WARNING: Se você tentar fornecer *credenciais e certificados*, a criação de b
 
 
 
+[[enable-credential-based-authentication]]
 === Ative a autenticação baseada em credenciais
 
 O Astra Trident requer as credenciais para um administrador com escopo SVM/cluster para se comunicar com o back-end do ONTAP. Recomenda-se a utilização de funções padrão predefinidas, como `admin` ou `vsadmin`. Isso garante compatibilidade direta com futuras versões do ONTAP que podem expor APIs de recursos a serem usadas por futuras versões do Astra Trident. Uma função de login de segurança personalizada pode ser criada e usada com o Astra Trident, mas não é recomendada.
@@ -85,6 +88,7 @@ Tenha em mente que a definição de back-end é o único lugar onde as credencia
 
 
 
+[[enable-certificate-based-authentication]]
 === Ativar autenticação baseada em certificado
 
 Backends novos e existentes podem usar um certificado e se comunicar com o back-end do ONTAP. Três parâmetros são necessários na definição de backend.
@@ -167,6 +171,7 @@ tridentctl update backend NasBackend -f cert-backend-updated.json -n trident
 
 
 
+[[update-authentication-methods-or-rotate-credentials]]
 === Atualizar métodos de autenticação ou girar credenciais
 
 Você pode atualizar um back-end existente para usar um método de autenticação diferente ou para girar suas credenciais. Isso funciona de ambas as maneiras: Backends que fazem uso de nome de usuário / senha podem ser atualizados para usar certificados; backends que utilizam certificados podem ser atualizados para nome de usuário / senha com base. Para fazer isso, você deve remover o método de autenticação existente e adicionar o novo método de autenticação. Em seguida, use o arquivo backend.json atualizado contendo os parâmetros necessários para executar `tridentctl update backend`.
@@ -201,6 +206,7 @@ A atualização de um back-end não interrompe o acesso a volumes que já foram 
 
 
 
+[[manage-nfs-export-policies]]
 == Gerenciar políticas de exportação de NFS
 
 O Astra Trident usa políticas de exportação de NFS para controlar o acesso aos volumes provisionados.
@@ -213,6 +219,7 @@ O Astra Trident oferece duas opções ao trabalhar com políticas de exportaçã
 
 
 
+[[dynamically-manage-export-policies]]
 === Gerencie dinamicamente políticas de exportação
 
 O Astra Trident permite gerenciar dinamicamente políticas de exportação para back-ends ONTAP. Isso fornece ao administrador de armazenamento a capacidade de especificar um espaço de endereço permitido para IPs de nó de trabalho, em vez de definir regras explícitas manualmente. Ele simplifica muito o gerenciamento de políticas de exportação. As modificações na política de exportação não exigem mais intervenção manual no cluster de storage. Além disso, isso ajuda a restringir o acesso ao cluster de armazenamento somente aos nós de trabalho que têm IPs no intervalo especificado, suportando um gerenciamento refinado e automatizado.
@@ -291,6 +298,7 @@ Se o endereço IP de um nó ativo for atualizado, será necessário reiniciar o 
 
 
 
+[[prepare-to-provision-smb-volumes]]
 == Prepare-se para provisionar volumes SMB
 
 Com um pouco de preparação adicional, você pode provisionar volumes SMB usando `ontap-nas` drivers.

@@ -16,6 +16,7 @@ Saiba mais sobre como configurar um back-end ONTAP com drivers nas ONTAP e Cloud
 
 
 
+[[ontap-nas-driver-details]]
 == Detalhes do driver nas do ONTAP
 
 O Astra Trident fornece os seguintes drivers de storage nas para se comunicar com o cluster ONTAP. Os modos de acesso suportados são: _ReadWriteOnce_ (RWO), _ReadOnlyMuy_ (ROX), _ReadWriteMany_ (RWX), _ReadWriteOncePod_ (RWOP).
@@ -62,6 +63,7 @@ RWO, ROX, RWX, RWOP
 |===
 
 
+[[astra-control-driver-compatibility]]
 === Compatibilidade com driver Astra Control
 
 O Astra Control oferece proteção aprimorada, recuperação de desastres e mobilidade (migrando volumes entre clusters Kubernetes) para volumes criados com os `ontap-nas` drivers , `ontap-nas-flexgroup` e . `ontap-san` link:https://docs.netapp.com/us-en/astra-control-center/use/replicate_snapmirror.html#replication-prerequisites["Pré-requisitos de replicação do Astra Control"^]Consulte para obter detalhes.
@@ -76,6 +78,7 @@ O Astra Control oferece proteção aprimorada, recuperação de desastres e mobi
 ====
 
 
+[[user-permissions]]
 == Permissões do usuário
 
 O Astra Trident espera ser executado como administrador da ONTAP ou SVM, normalmente usando o `admin` usuário do cluster ou um `vsadmin` usuário SVM, ou um usuário com um nome diferente que tenha a mesma função.

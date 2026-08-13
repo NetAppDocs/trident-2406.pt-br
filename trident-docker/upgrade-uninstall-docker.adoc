@@ -16,6 +16,7 @@ Você pode atualizar com segurança o Astra Trident para Docker sem qualquer imp
 
 
 
+[[upgrade]]
 == Atualização
 
 Execute as etapas abaixo para atualizar o Astra Trident para Docker.
@@ -77,6 +78,7 @@ IMPORTANT: Se você estiver atualizando de uma versão antiga do Astra Trident (
 
 
 
+[[uninstall]]
 == Desinstalar
 
 Execute as etapas abaixo para desinstalar o Astra Trident para Docker.

@@ -16,6 +16,7 @@ Você pode instalar o Astra Trident usando `tridentctl`o . Este processo aplica-
 
 
 
+[[critical-information-about-astra-trident-24-06]]
 == Informações críticas sobre o Astra Trident 24,06
 
 *Você deve ler as seguintes informações críticas sobre o Astra Trident.*
@@ -33,12 +34,13 @@ O uso de configuração não multipathing ou o uso `find_multipaths: yes` de ou 
 ====
 
 
+[[install-astra-trident-using-tridentctl]]
 == Instalar o Astra Trident usando `tridentctl`
 
 Revise link:../trident-install/kubernetes-deploy.html["a visão geral da instalação"] para garantir que você atendeu aos pré-requisitos de instalação e selecionou a opção de instalação correta para o seu ambiente.
 
 .Antes de começar
-Antes de iniciar a instalação, faça login no host Linux e verifique se ele está gerenciando um sistema operacional em funcionamento link:trident-get-started/requirements.html["Cluster compatível com Kubernetes"] e se você possui os privilégios necessários.
+Antes de iniciar a instalação, faça login no host Linux e verifique se ele está gerenciando um sistema operacional em funcionamento link:../trident-get-started/requirements.html["Cluster compatível com Kubernetes"] e se você possui os privilégios necessários.
 
 
 NOTE: Com OpenShift, use `oc` em vez de `kubectl` em todos os exemplos que se seguem, e faça login como *system:admin* primeiro executando `oc login -u system:admin` ou `oc login -u kube-admin`.
@@ -69,6 +71,7 @@ kubectl run -i --tty ping --image=busybox --restart=Never --rm -- \
 ====
 
 
+[[step-1-download-the-trident-installer-package]]
 == Passo 1: Baixe o pacote de instalação do Trident
 
 O pacote de instalação do Astra Trident cria um pod Trident, configura os objetos CRD que são usados para manter seu estado e inicializa os sidecars CSI para executar ações como provisionar e anexar volumes aos hosts de cluster. Baixe e extraia a versão mais recente do instalador do Trident a partir link:https://github.com/NetApp/trident/releases/latest["A seção _assets_ no GitHub"^]do . Atualize _ cliente Trident-installer-XX.XX.X.tar.gz>_ no exemplo com a versão selecionada do Astra Trident.
@@ -81,6 +84,7 @@ cd trident-installer
 ----
 
 
+[[step-2-install-astra-trident]]
 == Etapa 2: Instale o Astra Trident
 
 Instale o Astra Trident no namespace desejado executando o `tridentctl install` comando. Você pode adicionar argumentos adicionais para especificar a localização do Registro da imagem.
@@ -134,12 +138,14 @@ INFO Trident installation succeeded.
 ----
 
 
+[[verify-the-installation]]
 == Verifique a instalação
 
 Você pode verificar sua instalação usando o status de criação do pod ou `tridentctl`.
 
 
 
+[[using-pod-creation-status]]
 === Usando o status de criação do pod
 
 Você pode confirmar se a instalação do Astra Trident foi concluída analisando o status dos pods criados:
@@ -157,6 +163,7 @@ NOTE: Se o instalador não for concluído com êxito ou  `trident-controller-<ge
 
 
 
+[[using-tridentctl]]
 === Utilização `tridentctl`
 
 Você pode usar `tridentctl` para verificar a versão do Astra Trident instalada.
@@ -173,6 +180,7 @@ Você pode usar `tridentctl` para verificar a versão do Astra Trident instalada
 ----
 
 
+[[sample-configurations]]
 == Exemplos de configurações
 
 Os exemplos a seguir fornecem exemplos de configurações para a instalação do Astra Trident usando `tridentctl`o .
